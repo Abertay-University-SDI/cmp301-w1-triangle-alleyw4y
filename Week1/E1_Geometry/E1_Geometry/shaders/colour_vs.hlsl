@@ -12,13 +12,15 @@ cbuffer MatrixBuffer : register(b0)
 struct InputType
 {
 	float4 position : POSITION;
-	float4 colour : COLOR;
+	//float4 colour : COLOR;
+    float2 myTexture : TEXCOORD;
 };
 
 struct OutputType
 {
 	float4 position : SV_POSITION;
-	float4 colour : COLOR;
+	//float4 colour : COLOR;
+    float2 myTexture : TEXCOORD;
 };
 
 OutputType main(InputType input)
@@ -33,7 +35,8 @@ OutputType main(InputType input)
 	output.position = mul(output.position, viewMatrix);
 	output.position = mul(output.position, projectionMatrix);
 
-	output.colour = input.colour;
+    output.myTexture = input.myTexture;
+    //output.colour = input.colour;
 
 	return output;
 }
